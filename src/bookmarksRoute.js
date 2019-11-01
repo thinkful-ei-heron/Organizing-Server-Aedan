@@ -41,7 +41,6 @@ bookmarksRouter.post('/bookmarks', (req, res) => {
             post[keyArray[i]] = valueArray[i];
         }
     }
-    //console.log(post);
     dataStore.push(post);
     
     return res.status(201).location(`http://localhost:8000/bookmarks/${id}`).json(post);
