@@ -1,5 +1,5 @@
 const app = require('../src/app');
-const { API_TOKEN } = require('./configTest');
+const API_TOKEN = process.env.API_TOKEN;
 
 describe('GET /bookmarks route', () => {
     it('GET /bookmarks returns 200 and array of objects with proper keys when requested', () => {
@@ -33,7 +33,6 @@ describe('GET /bookmarks route', () => {
     it('GET /bookmarks/:id returns 404 if id doesnt exist', () => {
         return supertest(app)
             .get('/bookmarks/invalid')
-            .set('Authorization', `Bearer ${API_TOKEN}`)
             .set('Authorization', `Bearer ${API_TOKEN}`)
             .expect('Content-Type', /json/)
             .expect(404, { message: 'ID not found.' });
