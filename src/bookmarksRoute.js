@@ -13,7 +13,7 @@ bookmarksRouter.get('/bookmarks', (req, res) => {
 bookmarksRouter.get('/bookmarks/:id', (req, res) => {
     let result = dataStore.find(b => b.id === req.params.id);
     if(result) {
-        return res.json([result]);
+        return res.json(result);
     } else {
         logger.error(`Bookmark with ID ${req.params.id} not found`);
         return res.status(404).json({message: 'ID not found.'});
@@ -81,7 +81,7 @@ bookmarksRouter.delete('/bookmarks/:id',(req,res)=>{
     
     dataStore.splice(del,1);
 
-    return res.status(200).json({});
+    return res.status(204).end();
 });
 
 module.exports = bookmarksRouter;
